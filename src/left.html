@@ -1,0 +1,98 @@
+<!doctype html PUBLIC>
+<html lang="zh">
+	<head>
+		<title>左边布局</title>
+		<meta name="description" content="plucky@echo.engineer">
+		<meta charset="utf-8" />
+		<meta name="keywords" content="Plucky,pluckypan,库亚2345,Android开发,比特风暴" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<link href="css/style.css" rel="stylesheet" type="text/css" />
+		<script language="JavaScript" src="js/jquery.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				//导航切换
+				$(".menuson li").click(function() {
+					$(".menuson li.active").removeClass("active")
+					$(this).addClass("active");
+				});
+
+				$('.title').click(function() {
+					var $ul = $(this).next('ul');
+					$('dd').find('ul').slideUp();
+					if ($ul.is(':visible')) {
+						$(this).next('ul').slideUp();
+					} else {
+						$(this).next('ul').slideDown();
+					}
+				});
+			})
+		</script>
+
+	</head>
+
+	<body style="background:#f0f9fd;">
+		<div class="lefttop">
+			<span></span>功能菜单
+		</div>
+
+		<dl class="leftmenu">
+
+			<dd>
+				<div class="title">
+					<span>
+						<img src="images/leftico01.png" />
+					</span>书签信息
+				</div>
+				<ul class="menuson">
+					<li class="active">
+						<cite></cite>
+						<a href="bookmarks.html" target="rightFrame">
+							数据列表
+						</a><i></i>
+					</li>
+					<li>
+						<cite></cite>
+						<a href="modify.html" target="rightFrame">
+							添加编辑
+						</a><i></i>
+					</li>
+					<li>
+						<cite></cite>
+						<a href="imglist.html" target="rightFrame">
+							图片列表
+						</a><i></i>
+					</li>
+					<li>
+						<cite></cite>
+						<a href="computer.html" target="rightFrame">
+							分类列表
+						</a><i></i>
+					</li>
+					<li>
+						<cite></cite>
+						<a href="filelist.html" target="rightFrame">
+							文件列表
+						</a><i></i>
+					</li>
+				</ul>
+			</dd>
+
+			<dd>
+				<div class="title">
+					<span>
+						<img src="images/leftico02.png" />
+					</span>其他信息
+				</div>
+				<ul class="menuson">
+					<li>
+						<cite></cite>
+						<a href="error.html" target="rightFrame">
+							404页面
+						</a><i></i>
+					</li>
+				</ul>
+			</dd>
+		</dl>
+	</body>
+</html>

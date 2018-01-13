@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh">
+	<head>
+		<title>电脑列表</title>
+		<meta name="description" content="plucky@echo.engineer">
+		<meta charset="utf-8" />
+		<meta name="keywords" content="Plucky,pluckypan,库亚2345,Android开发,比特风暴" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<link href="css/style.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/jquery.idTabs.min.js"></script>
+	</head>
+
+	<body>
+
+		<div class="place">
+			<span>位置：</span>
+			<ul class="placeul">
+				<li>
+					<a href="#">
+						首页
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						404错误提示
+					</a>
+				</li>
+			</ul>
+		</div>
+
+		<div class="formbody">
+
+			<div id="usual1" class="usual">
+
+				<div class="itab">
+					<ul>
+						<li>
+							<a href="#tab1" class="selected">
+								发布通知
+							</a>
+						</li>
+						<li>
+							<a href="#tab2">
+								自定义
+							</a>
+						</li>
+					</ul>
+				</div>
+
+				<div id="tab1" class="tabson">
+
+					BBB
+
+				</div>
+
+				<div id="tab2" class="tabson">
+
+					AAA
+
+				</div>
+
+			</div>
+
+			<script type="text/javascript">
+				$("#usual1 ul").idTabs();
+			</script>
+
+		</div>
+	</body>
+</html>
