@@ -10,6 +10,8 @@
 		<link href="css/style.css" rel="stylesheet" type="text/css" />
 		<script type="text/javascript" src="js/jquery.js"></script>
 		<script type="text/javascript" src="js/jquery.idTabs.min.js"></script>
+		<link href="https://cdn.bootcss.com/jquery-jsonview/1.2.3/jquery.jsonview.min.css" rel="stylesheet">
+		<script src="https://cdn.bootcss.com/jquery-jsonview/1.2.3/jquery.jsonview.min.js"></script>
 	</head>
 
 	<body>
@@ -51,7 +53,8 @@
 
 				<div id="tab1" class="tabson">
 
-					BBB
+					<pre id="output">
+					</pre>
 
 				</div>
 
@@ -65,6 +68,9 @@
 
 			<script type="text/javascript">
 				$("#usual1 ul").idTabs();
+				$.ajax({url:"https://api.github.com/gists/6dcc0f2b41c1641ed3e0fa81b04c3a5d",success:function(result){
+				$("#output").JSONView(result, { collapsed: false });
+    }});
 			</script>
 
 		</div>
