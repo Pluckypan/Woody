@@ -1,78 +1,115 @@
 <!doctype html>
 <html lang="zh">
-	<head>
-		<title>电脑列表</title>
-		<meta name="description" content="plucky@echo.engineer">
-		<meta charset="utf-8" />
-		<meta name="keywords" content="Plucky,pluckypan,库亚2345,Android开发,比特风暴" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-		<link href="css/style.css" rel="stylesheet" type="text/css" />
-		<script type="text/javascript" src="js/jquery.js"></script>
-		<script type="text/javascript" src="js/jquery.idTabs.min.js"></script>
-		<link href="https://cdn.bootcss.com/jquery-jsonview/1.2.3/jquery.jsonview.min.css" rel="stylesheet">
-		<script src="https://cdn.bootcss.com/jquery-jsonview/1.2.3/jquery.jsonview.min.js"></script>
-	</head>
+<head>
+	<title>电脑列表</title>
+	<meta name="description" content="plucky@echo.engineer">
+	<meta charset="utf-8" />
+	<meta name="keywords" content="Plucky,pluckypan,库亚2345,Android开发,比特风暴" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-	<body>
+	<link href="css/style.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/jquery.idTabs.min.js"></script>
+	<link href="https://cdn.bootcss.com/jquery-jsonview/1.2.3/jquery.jsonview.min.css" rel="stylesheet">
+	<script src="https://cdn.bootcss.com/jquery-jsonview/1.2.3/jquery.jsonview.min.js"></script>
+</head>
 
-		<div class="place">
-			<span>位置：</span>
-			<ul class="placeul">
-				<li>
-					<a href="#">
+<body>
+
+	<div class="place">
+		<span>位置：</span>
+		<ul class="placeul">
+			<li>
+				<a href="#">
 						首页
 					</a>
-				</li>
-				<li>
-					<a href="#">
+			</li>
+			<li>
+				<a href="#">
 						404错误提示
 					</a>
-				</li>
-			</ul>
-		</div>
+			</li>
+		</ul>
+	</div>
 
-		<div class="formbody">
+	<div class="formbody">
 
-			<div id="usual1" class="usual">
+		<div id="usual1" class="usual">
 
-				<div class="itab">
-					<ul>
-						<li>
-							<a href="#tab1" class="selected">
+			<div class="itab">
+				<ul>
+					<li>
+						<a href="#tab1" class="selected">
 								发布通知
 							</a>
-						</li>
-						<li>
-							<a href="#tab2">
+					</li>
+					<li>
+						<a href="#tab2">
 								自定义
 							</a>
-						</li>
-					</ul>
-				</div>
+					</li>
+				</ul>
+			</div>
 
-				<div id="tab1" class="tabson">
+			<div id="tab1" class="tabson">
 
-					<pre id="output">
+				<pre id="output">
 					</pre>
-
-				</div>
-
-				<div id="tab2" class="tabson">
-
-					AAA
-
-				</div>
 
 			</div>
 
-			<script type="text/javascript">
-				$("#usual1 ul").idTabs();
-				$.ajax({url:"https://api.github.com/gists/6dcc0f2b41c1641ed3e0fa81b04c3a5d",success:function(result){
-				$("#output").JSONView(result, { collapsed: false });
-    }});
-			</script>
+			<div id="tab2" class="tabson">
+				<input type="button" value="Edit" id="btnEdit" />
+				<pre id="output1">
+					</pre>
+
+			</div>
 
 		</div>
-	</body>
+
+		<script type="text/javascript">
+			$("#usual1 ul").idTabs();
+			$.ajax({
+				url: "https://api.github.com/gists/6dcc0f2b41c1641ed3e0fa81b04c3a5d",
+				success: function(result) {
+					$("#output").JSONView(result, {
+						collapsed: false
+					});
+				}
+			});
+
+			$("#btnEdit").click(function() {
+				$.ajax({
+					url: 'https://api.github.com/gists/6dcc0f2b41c1641ed3e0fa81b04c3a5d',
+					type: 'PATCH',
+					headers: {
+						'User-Agent': "userAgent",
+					},
+					data: {
+
+						"description": "Edit",
+						"public": true,
+						"files": {
+							"rainy-night.md": {
+								"content": "Edit"
+							}
+						}
+					},
+					beforeSend: function(xhr) {
+						xhr.setRequestHeader("Authorization", "token 0dcdaacd5fe2caf5286eaf5df13894de32b60583");
+					},
+					success: function(result) {
+						$("#output1").JSONView(result, {
+							collapsed: false
+						});
+					}
+				});
+
+			});
+		</script>
+
+	</div>
+</body>
+
 </html>
