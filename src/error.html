@@ -71,7 +71,7 @@
 		<script type="text/javascript">
 			$("#usual1 ul").idTabs();
 			$.ajax({
-				url: "https://api.github.com/gists/6dcc0f2b41c1641ed3e0fa81b04c3a5d",
+				url: "https://api.github.com/gists/6dcc0f2b41c1641ed3e0fa81b04c3a5d?",
 				success: function(result) {
 					$("#output").JSONView(result, {
 						collapsed: false
@@ -83,13 +83,8 @@
 				$.ajax({
 					url: 'https://api.github.com/gists/6dcc0f2b41c1641ed3e0fa81b04c3a5d',
 					type: 'PATCH',
-					headers: {
-						'User-Agent': "userAgent",
-					},
 					data: {
-
 						"description": "Edit",
-						"public": true,
 						"files": {
 							"rainy-night.md": {
 								"content": "Edit"
