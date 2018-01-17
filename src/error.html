@@ -92,7 +92,8 @@
 						}
 					},
 					beforeSend: function(xhr) {
-						xhr.setRequestHeader("Authorization", "token 0dcdaacd5fe2caf5286eaf5df13894de32b60583");
+						xhr.setRequestHeader("Authorization", "token 13abd9159d637be756335b901a83ab7edca978bf");
+						xhr.setRequestHeader("Accept", "application/vnd.github.woody");
 					},
 					success: function(result) {
 						$("#output1").JSONView(result, {
