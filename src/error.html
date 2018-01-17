@@ -41,12 +41,17 @@
 				<ul>
 					<li>
 						<a href="#tab1" class="selected">
-								发布通知
+								GET
 							</a>
 					</li>
 					<li>
 						<a href="#tab2">
-								自定义
+								EDIT
+							</a>
+					</li>
+					<li>
+						<a href="#tab3">
+								CREATE
 							</a>
 					</li>
 				</ul>
@@ -65,13 +70,21 @@
 					</pre>
 
 			</div>
+			<div id="tab3" class="tabson">
+				<input type="button" value="CREATE" id="btnEdit1" />
+				<pre id="output2">
+					</pre>
+
+			</div>
 
 		</div>
 
 		<script type="text/javascript">
+		var _id="6dcc0f2b41c1641ed3e0fa81b04c3a5d";
+		var token="token 13abd9159d637be756335b901a83ab7edca978bf"+"xxx";
 			$("#usual1 ul").idTabs();
 			$.ajax({
-				url: "https://api.github.com/gists/6dcc0f2b41c1641ed3e0fa81b04c3a5d?",
+				url: "https://api.github.com/gists/"+_id,
 				success: function(result) {
 					$("#output").JSONView(result, {
 						collapsed: false
@@ -81,7 +94,7 @@
 
 			$("#btnEdit").click(function() {
 				$.ajax({
-					url: 'https://api.github.com/gists/6dcc0f2b41c1641ed3e0fa81b04c3a5d',
+					url: 'https://api.github.com/gists/'+_id,
 					type: 'PATCH',
 					data: {
 						"description": "Edit",
@@ -92,11 +105,38 @@
 						}
 					},
 					beforeSend: function(xhr) {
-						xhr.setRequestHeader("Authorization", "token 13abd9159d637be756335b901a83ab7edca978bf");
+						xhr.setRequestHeader("Authorization", token);
 						xhr.setRequestHeader("Accept", "application/vnd.github.woody");
 					},
 					success: function(result) {
 						$("#output1").JSONView(result, {
+							collapsed: false
+						});
+					}
+				});
+
+			});
+
+			$("#btnEdit1").click(function() {
+				$.ajax({
+					url: 'https://api.github.com/gists',
+					type: 'POST',
+					data:{
+								"description": "AAA",
+								"public": false,
+								"files": {
+									"A.md": {
+										"content": "AAAA"
+									}
+								}
+							},
+					beforeSend: function(xhr) {
+						xhr.setRequestHeader("Authorization", token);
+						xhr.setRequestHeader("Accept", "application/vnd.github.woody");
+						xhr.setRequestHeader("User-Agent", "woody");
+					},
+					success: function(result) {
+						$("#output2").JSONView(result, {
 							collapsed: false
 						});
 					}
