@@ -40,7 +40,7 @@
 			<div class="itab">
 				<ul>
 					<li>
-						<a href="#tab1" class="selected">
+						<a href="#tab1">
 								GET
 							</a>
 					</li>
@@ -50,7 +50,7 @@
 							</a>
 					</li>
 					<li>
-						<a href="#tab3">
+						<a href="#tab3" class="selected">
 								CREATE
 							</a>
 					</li>
@@ -80,11 +80,13 @@
 		</div>
 
 		<script type="text/javascript">
-		var _id="6dcc0f2b41c1641ed3e0fa81b04c3a5d";
-		var token="token 13abd9159d637be756335b901a83ab7edca978bf"+"xxx";
+			var _id = "6dcc0f2b41c1641ed3e0fa81b04c3a5d";
+			var fake = "xx";
+			var token = "token " + "e0109d4979f9c60c7c1a2e6312" + fake +
+				"fed42023f5564b";
 			$("#usual1 ul").idTabs();
 			$.ajax({
-				url: "https://api.github.com/gists/"+_id,
+				url: "https://api.github.com/gists/" + _id,
 				success: function(result) {
 					$("#output").JSONView(result, {
 						collapsed: false
@@ -94,7 +96,7 @@
 
 			$("#btnEdit").click(function() {
 				$.ajax({
-					url: 'https://api.github.com/gists/'+_id,
+					url: 'https://api.github.com/gists/' + _id,
 					type: 'PATCH',
 					data: {
 						"description": "Edit",
@@ -106,7 +108,7 @@
 					},
 					beforeSend: function(xhr) {
 						xhr.setRequestHeader("Authorization", token);
-						xhr.setRequestHeader("Accept", "application/vnd.github.woody");
+						xhr.setRequestHeader("Accept", "application/vnd.github.v3.raw+json");
 					},
 					success: function(result) {
 						$("#output1").JSONView(result, {
@@ -118,23 +120,27 @@
 			});
 
 			$("#btnEdit1").click(function() {
+				var _data={
+					'description': 'AAA',
+					'files': {
+						'A.md': {
+							'content': 'AAAA'
+						}
+					}
+				};
+				console.log(JSON.stringify(_data));
 				$.ajax({
 					url: 'https://api.github.com/gists',
 					type: 'POST',
-					data:{
-								"description": "AAA",
-								"public": false,
-								"files": {
-									"A.md": {
-										"content": "AAAA"
-									}
-								}
-							},
-					beforeSend: function(xhr) {
-						xhr.setRequestHeader("Authorization", token);
-						xhr.setRequestHeader("Accept", "application/vnd.github.woody");
-						xhr.setRequestHeader("User-Agent", "woody");
+					"dataType": "json",
+					data:_data ,
+					headers: {
+						Accept: "application/vnd.github.v3.raw+json",
+						Authorization: token,
+						"User-Agent":"pluckypan,woody",
+						ETag:"Plucky"
 					},
+					//contentType: "application/x-www-form-urlencoded;application/json",
 					success: function(result) {
 						$("#output2").JSONView(result, {
 							collapsed: false
