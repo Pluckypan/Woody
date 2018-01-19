@@ -1,5 +1,5 @@
 ### API
-#### Get a single gist
+#### 获取指定Gist
 > GET /gists/:id
 
 ``` javascript
