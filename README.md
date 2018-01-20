@@ -19,7 +19,12 @@
 - [ ] 支持插件内浏览网址
 - [ ] 待开发、开源、上线
 
-### 更新日志
+### 最近更新
+> 更多请查看 [更新历史](update.md)
 #### 0.0.1
 1. xxx
 2. ooo
+
+### Licence
+遵循 [Apache License](LICENSE)
+另外UI素材来源于 [uimaker](http://www.uimaker.com/)
