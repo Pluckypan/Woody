@@ -59,97 +59,19 @@
 
 			<div id="tab1" class="tabson">
 
-				<pre id="output">
-					</pre>
-
 			</div>
 
 			<div id="tab2" class="tabson">
-				<input type="button" value="Edit" id="btnEdit" />
-				<pre id="output1">
-					</pre>
 
 			</div>
 			<div id="tab3" class="tabson">
-				<input type="button" value="CREATE" id="btnEdit1" />
-				<pre id="output2">
-					</pre>
 
 			</div>
 
 		</div>
 
 		<script type="text/javascript">
-			var _id = "6dcc0f2b41c1641ed3e0fa81b04c3a5d";
-			var fake = "DDD";
-			var token = "token " + "e0109d4979f9c60c7c1a2e6312" + fake +
-				"fed42023f5564b";
 			$("#usual1 ul").idTabs();
-			$.ajax({
-				url: "https://api.github.com/gists/" + _id,
-				success: function(result) {
-					$("#output").JSONView(result, {
-						collapsed: false
-					});
-				}
-			});
-
-			$("#btnEdit").click(function() {
-				var _data = {
-					'description': 'Edit',
-					'public':false,
-					'files': {
-						'rainy-night.md': {
-							'content': 'Edit'+new Date()
-						}
-					}
-				};
-				console.log(JSON.stringify(_data));
-				$.ajax({
-					url: 'https://api.github.com/gists/' + _id,
-					type: 'POST',
-					data: JSON.stringify(_data),
-					beforeSend: function(xhr) {
-						xhr.setRequestHeader("Authorization", token);
-						xhr.setRequestHeader("Accept", "application/vnd.github.v3.raw+json");
-					},
-					success: function(result) {
-						$("#output1").JSONView(result, {
-							collapsed: false
-						});
-					}
-				});
-
-			});
-
-			$("#btnEdit1").click(function() {
-				var _data = {
-					'description': 'AAA',
-					'files': {
-						'A.md': {
-							'content': 'AAAA' + new Date()
-						}
-					}
-				};
-				console.log(JSON.stringify(_data));
-				$.ajax({
-					url: 'https://api.github.com/gists',
-					type: 'POST',
-					"dataType": "json",
-					data: JSON.stringify(_data),
-					beforeSend: function(xhr) {
-						xhr.setRequestHeader("Authorization", token);
-						xhr.setRequestHeader("Accept", "application/vnd.github.v3.raw+json");
-					},
-					//contentType: "application/x-www-form-urlencoded;application/json",
-					success: function(result) {
-						$("#output2").JSONView(result, {
-							collapsed: false
-						});
-					}
-				});
-
-			});
 		</script>
 
 	</div>
