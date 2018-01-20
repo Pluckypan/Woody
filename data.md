@@ -35,6 +35,8 @@
 |desc|string|书签描述|
 |content|string|内容(预留字段)|
 |tag|string|标签,逗号隔开|
+|order|int|排序,越小越靠前|
+|hot|boolean|上首页,首页导航展示|
 |type|int|类型(预留字段)|
 |url|string|链接地址|
 |icon|string|图标(如果无则自动生成)|
