@@ -2,7 +2,7 @@
 <html lang="zh">
 
 <head>
-	<title>欢迎登录后台管理系统</title>
+	<title>欢迎登录书签管理系统</title>
 	<meta name="description" content="plucky@echo.engineer">
 	<meta charset="utf-8" />
 	<meta name="keywords" content="Plucky,pluckypan,库亚2345,Android开发,比特风暴" />
@@ -26,16 +26,13 @@
 					'left': ($(window).width() - 692) / 2
 				});
 			})
-			$('.east').powerTip({
-				placement: 'e',
-				openEvents: ['click'],
-				closeEvents: ['click']
-			});
+			$("#_gist").val(getGist());
+			$("#_token").val(getToken());
 		});
 
 		function doLogin() {
-			var gist = $("_gist").val();
-			var token = $("_token").val();
+			var gist = $("#_gist").val();
+			var token = $("#_token").val();
 			if (!gist || !gist.length > 0) {
 				$.toast({title: '请输入有效Gist', position: 'middle'});
 				return;
@@ -81,10 +78,10 @@
 
 			<ul>
 				<li>
-					<input id="_gist" type="text" class="loginuser east" title="请输入有效Gist" value="Gist ID" onclick="JavaScript:this.value=''" />
+					<input id="_gist" type="password" class="loginuser east" title="请输入有效Gist" placeholder="Gist ID"/>
 				</li>
 				<li>
-					<input id="_token" type="text" class="loginpwd east" title="请输入有效Token" value="Access Token" onclick="JavaScript:this.value=''" />
+					<input id="_token" type="password" class="loginpwd east" title="请输入有效Token" placeholder="Access Token"/>
 				</li>
 				<li>
 					<input name="" type="button" class="loginbtn" value="登录" onclick="doLogin();" />
