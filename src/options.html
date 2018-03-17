@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>图虫图片解析器</title>
+		<meta name="author" content="echo.engineer" />
+		<meta name="description" content="图虫图片">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<link href="icon.png" rel="icon">
+
+		<link href="css/weui.min.css" rel="stylesheet">
+		<link href="css/jquery-weui.css" rel="stylesheet">
+		<script src="js/jquery.min.js" type="text/javascript"></script>
+		<script src="js/jquery-weui.js" type="text/javascript"></script>
+
+		<script src="js/common.js"></script>
+		<script src="js/base64.js"></script>
+		<script src="js/options.js"></script>
+		<style>
+			.page_title {
+				text-align: center;
+				font-size: 30px;
+				color: #3cc51f;
+				font-weight: 400;
+				margin: 20px
+			}
+
+			.page_desc {
+				text-align: center;
+				color: #888;
+				font-style: oblique;
+				font-size: 14px
+			}
+
+			.demos-title {
+				text-align: center;
+				font-size: 34px;
+				color: #3cc51f;
+				font-weight: 400;
+				margin: 0 15%;
+			}
+
+			.demos-sub-title {
+				text-align: center;
+				color: #666;
+				font-weight: bold;
+				font-size: 14px;
+			}
+
+			.demos-header {
+				padding: 20px 0;
+			}
+
+			.demos-content-padded {
+				padding: 15px;
+			}
+
+			.demos-second-title {
+				text-align: center;
+				font-size: 24px;
+				color: #3cc51f;
+				font-weight: 400;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="hd">
+			<h1 class="page_title">图虫图片解析器</h1>
+			<p class="page_desc">图虫在手，天下我有</p>
+		</div>
+		<div class="weui_grids" style="margin-top: 20px;">
+			<a href="#" class="weui_grid js_grid" id="btnList">
+				<div class="weui_grid_icon">
+					<img src="img/icon_kodo.svg" alt="">
+				</div>
+				<p class="weui_grid_label">
+					同步列表
+				</p>
+			</a>
+			<a href="#" class="weui_grid js_grid" id="openDirectory">
+				<div class="weui_grid_icon">
+					<img src="img/folder-library.png" alt="">
+				</div>
+				<p class="weui_grid_label">
+					目录管理
+				</p>
+			</a>
+			<a href="#" class="weui_grid js_grid" id="openHalf">
+				<div class="weui_grid_icon">
+					<img src="img/logo.3c4ab848.svg" alt="">
+				</div>
+				<p class="weui_grid_label">
+					密钥管理
+				</p>
+			</a>
+			<a href="#" class="weui_grid js_grid open-popup" data-target="#full">
+				<div class="weui_grid_icon">
+					<img src="icon48.png" alt="">
+				</div>
+				<p class="weui_grid_label">
+					关于插件
+				</p>
+			</a>
+		</div>
+		<div id="msg-div" style="padding: 4px;"></div>
+		<div id="half" class='weui-popup-container popup-bottom'>
+			<div class="weui-popup-overlay"></div>
+			<div class="weui-popup-modal">
+				<div class="toolbar">
+					<div class="toolbar-inner">
+						<h1 class="title">七牛云存储</h1>
+					</div>
+				</div>
+				<div class="modal-content">
+					<div class="weui_cells_title">必填参数</div>
+					<div class="weui_cells">
+						<div class="weui_cell">
+							<div class="weui_cell_hd"><label class="weui_label">AccessKey</label></div>
+							<div class="weui_cell_bd weui_cell_primary">
+								<input class="weui_input" type="text" placeholder="" id="ak" value="">
+							</div>
+						</div>
+						<div class="weui_cell">
+							<div class="weui_cell_hd"><label class="weui_label">SecretKey</label></div>
+							<div class="weui_cell_bd weui_cell_primary">
+								<input class="weui_input" type="password" placeholder="" id="sk" value="">
+							</div>
+						</div>
+						<div class="weui_cell">
+							<div class="weui_cell_hd"><label class="weui_label">Bucket</label></div>
+							<div class="weui_cell_bd weui_cell_primary">
+								<input class="weui_input" type="text" placeholder="" id="bucket" value="">
+							</div>
+						</div>
+						<div class="weui_cell">
+							<div class="weui_cell_hd"><label class="weui_label">Domain</label></div>
+							<div class="weui_cell_bd weui_cell_primary">
+								<input class="weui_input" type="text" placeholder="" id="domain" value="">
+							</div>
+						</div>
+					</div>
+					<div class="weui_cells_title">帮助提示
+						<br />如果你拥有七牛云储存空间，且有同步图片的需求，请配置以上参数，否则无法开启图片同步功能。申请七牛云存储，请戳
+						<a href="http://www.qiniu.com/">七牛云</a>. 不了解七牛云参数配置?请戳
+						<a href="http://jingyan.baidu.com/article/5552ef47d98291518ffbc9bc.html">这里</a>
+					</div>
+					<p class="weui_btn_area" style="margin-bottom: 10px;">
+						<a href="#" class="weui_btn weui_btn_primary" id="btnCfgSave">保存</a>
+						<a href="#" class="weui_btn weui_btn_default close-popup">取消</a>
+					</p>
+				</div>
+			</div>
+		</div>
+		<div id="full" class='weui-popup-container'>
+			<div class="weui-popup-overlay"></div>
+			<div class="weui-popup-modal">
+				<header class='demos-header'>
+					<h2 class="demos-second-title">关于 tuchongeter</h2>
+					<p class="demos-sub-title">plucky@echo.engineer</p>
+				</header>
+
+				<article class="weui_article">
+					<section>
+						<h3> <strong>主要功能 1.0.6</strong> </h3>
+						<ul class="demos-content-padded">
+							<li>快速解析
+								<a href="https://tuchong.com/"> 图虫网站 </a>、<a href="http://www.hualvtu.com/" target="_blank"> 画旅途 </a>的图片源，点击插件即可查看及存储操作</li>
+							<li>图片同步至
+								<a href="http://www.qiniu.com/"> 七牛云 </a>功能。<strong style="color: #FA2855;">注册可免费获得10G空间</strong></li>
+							<li>在所有网站的图片右键菜单中加入 <strong>同步至七牛云</strong> </li>
+							<li>同步图片列表、图片浏览器：支持图片删除、重命名、移动至不同文件夹</li>
+							<li>目录管理，支持同步图片至不同目录，按目录查看图片</li>
+						</ul>
+					</section>
+					<section>
+						<h3><strong>计划功能</strong></h3>
+						<ul class="demos-content-padded">
+							<li>优化以下网站的解析：
+								<a href="http://500px.me" target="_blank">500px</a>
+							</li>
+							<li>同步图片时可自由选择{文件夹}（非默认）</li>
+							<li>优化图片管理功能（类似文件管理器），开源代码</li>
+						</ul>
+					</section>
+					<section>
+						<h3><strong>其他说明</strong></h3>
+						<p>该控件仅供学习研究用，图虫网站的图片版权归图虫及摄影师所有（其他网站同理），图片仅供个人收藏欣赏，切勿用于商业用途。如果您发现该控件有任何侵犯您权益的地方，请发送邮件至：plucky@echo.engineer。我们将争取妥善解决。</p>
+					</section>
+					<section>
+						<a href="#" class="weui_btn weui_btn_plain_primary close-popup">关闭</a>
+					</section>
+				</article>
+			</div>
+		</div>
+
+		<div id="directory" class='weui-popup-container'>
+			<div class="weui-popup-overlay"></div>
+			<div class="weui-popup-modal">
+				<header class='demos-header'>
+					<h1 class="demos-title">目录管理</h1>
+				</header>
+
+				<div class="weui_cells">
+					<div class="weui_cell">
+						<div class="weui_cell_hd"><label for="default" class="weui_label">默认目录</label></div>
+						<div class="weui_cell_bd weui_cell_primary">
+							<input class="weui_input" id="default" type="text" value="tuchongeter">
+						</div>
+						<div class="weui_cell_ft">
+							<a href="#" class="weui_btn weui_btn_mini weui_btn_primary" id="lookDir">列表</a>
+						</div>
+					</div>
+				</div>
+				<div class="weui_cells_title">添加目录</div>
+				<div class="weui_cells">
+					<div class="weui_cell">
+						<div class="weui_cell_hd"><label for="name" class="weui_label">父级目录</label></div>
+						<div class="weui_cell_bd weui_cell_primary">
+							<input class="weui_input" id="parent" type="text" value="tuchongeter">
+						</div>
+					</div>
+					<div class="weui_cell">
+						<div class="weui_cell_hd"><label for="name" class="weui_label">新增目录</label></div>
+						<div class="weui_cell_bd weui_cell_primary">
+							<input class="weui_input" id="newdir" type="text" value="">
+						</div>
+						<div class="weui_cell_ft">
+							<a href="#" class="weui_btn weui_btn_mini weui_btn_primary" id="addDir">添加</a>
+						</div>
+					</div>
+				</div>
+				<div class="weui_cells_title">解析设置</div>
+				<div class="weui_cells">
+					<div class="weui_cell">
+						<div class="weui_cell_hd"><label for="name" class="weui_label">解析度</label></div>
+						<div class="weui_cell_bd weui_cell_primary">
+							<input class="weui_input" id="pixel" type="text" value="600*400">
+						</div>
+						<div class="weui_cell_ft" id="pixelInfo">
+							<i class="weui_icon_info"></i>
+						</div>
+					</div>
+				</div>
+
+				<section style="margin: 15px;">
+					<a href="#" class="weui_btn weui_btn_plain_primary" id="closeDir">关闭</a>
+				</section>
+			</div>
+		</div>
+
+	</body>
+
+</html>

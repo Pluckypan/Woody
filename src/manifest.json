@@ -1,0 +1,47 @@
+{
+	"name": "woody",
+	"version": "1.0.0",
+	"manifest_version": 1,
+	"description": "Woody书签管理",
+	"icons": {
+		"48": "icon48.png"
+	},
+	"options_page": "options.html",
+	"content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+	"browser_action": {
+		"default_icon": "icon.png",
+		"default_popup": "index.html"
+	},
+	"background": {
+		"scripts": [
+			"js/base64.js",
+			"js/httpclient.js",
+			"js/common.js",
+			"js/background.js"
+		]
+	},
+	"content_scripts": [
+		{
+			"matches": [
+				"*://*/*"
+			],
+			"css": [
+				"css/weui.min.css",
+				"css/jquery-weui.css"
+			],
+			"js": [
+				"js/jquery.min.js",
+				"js/jquery-weui.js",
+				"js/tuchongeter.js"
+			],
+			"run_at": "document_end"
+		}
+	],
+	"permissions": [
+		"tabs",
+		"contextMenus",
+		"http://*/",
+		"http://1991th.com/*",
+		"unlimitedStorage"
+	]
+}
