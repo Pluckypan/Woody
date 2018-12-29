@@ -14,10 +14,7 @@
 	},
 	"background": {
 		"scripts": [
-			"js/base64.js",
-			"js/httpclient.js",
-			"js/common.js",
-			"js/background.js"
+			"app/background.js"
 		]
 	},
 	"content_scripts": [
@@ -26,13 +23,10 @@
 				"*://*/*"
 			],
 			"css": [
-				"css/weui.min.css",
-				"css/jquery-weui.css"
+				"xxx.css"
 			],
 			"js": [
-				"js/jquery.min.js",
-				"js/jquery-weui.js",
-				"js/tuchongeter.js"
+				"xxx.js"
 			],
 			"run_at": "document_end"
 		}
