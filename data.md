@@ -18,11 +18,12 @@
 |pid|int|父级id|
 |name|string|名称|
 |desc|string|分类描述|
+|order|int|排序,越小越靠前|
+|create_time|long|创建时间|
 |icon|string|图标(预留字段)|
 |type|int|类型(预留字段)|
 |uid|string|用户id(预留字段)|
 |uhome|string|用户网站链接(预留字段)|
-|create_time|long|创建时间|
 
 ### 书签结构
 > **Bookmark** 书签数据结构
