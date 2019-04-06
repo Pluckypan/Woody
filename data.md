@@ -21,6 +21,7 @@
 |order|int|排序,越小越靠前|
 |create_time|long|创建时间|
 |icon|string|图标(预留字段)|
+|hot|boolean|常用标签|
 |type|int|类型(预留字段)|
 |uid|string|用户id(预留字段)|
 |uhome|string|用户网站链接(预留字段)|
@@ -31,11 +32,11 @@
 |字段|类型|描述|
 |:---:|:---:|:--:|
 |id|int|书签id(自增主键)|
-|cid|int|分类id,可隶属于不同分类,用逗号隔开|
+|cid|int|分类id|
 |name|string|书签名|
 |desc|string|书签描述|
 |content|string|内容(预留字段)|
-|tag|string|标签,逗号隔开|
+|tag|[]|标签,数组|
 |order|int|排序,越小越靠前|
 |hot|boolean|上首页,首页导航展示|
 |type|int|类型(预留字段)|
