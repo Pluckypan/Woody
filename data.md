@@ -30,20 +30,21 @@
 
 |字段|类型|描述|
 |:---:|:---:|:--:|
-|id|int|书签id(自增主键)|
 |cid|int|分类id,可隶属于不同分类,用逗号隔开|
+|id|int|书签id(自增主键)|
 |name|string|书签名|
 |desc|string|书签描述|
-|content|string|内容(预留字段)|
 |tag|string|标签,逗号隔开|
 |order|int|排序,越小越靠前|
 |hot|boolean|上首页,首页导航展示|
-|type|int|类型(预留字段)|
 |url|string|链接地址|
+|create_time|long|创建时间|
+|type|int|类型(预留字段)|
+|content|string|内容(预留字段)|
 |icon|string|图标(如果无则自动生成)|
 |uid|string|用户id(预留字段)|
 |uhome|string|用户网站链接(预留字段)|
-|create_time|long|创建时间|
+
 
 ### 统计
 > **Analysis** 统计点击热度
