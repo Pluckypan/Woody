@@ -43,11 +43,12 @@
 |create_time|long|创建时间|
 |type|int|类型(预留字段)|
 |icon|string|图标(如果无则自动生成)|
+|cover|string|封面(预留字段)|
 |uid|string|用户id(预留字段)|
 |uhome|string|用户网站链接(预留字段)|
 
 
-### 统计
+### ~~统计~~
 > **Analysis** 统计点击热度
 
 |字段|类型|描述|
