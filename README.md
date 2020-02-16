@@ -14,10 +14,7 @@
 ### 功能介绍
 
 ### TODO
-- [ ] 大屏首页导航,显示常用网址
-- [ ] 树形结构管理器
-- [ ] 支持插件内浏览网址
-- [ ] 待开发、开源、上线
+[TODO](TODO.md)
 
 ### 最近更新
 > 更多请查看 [更新历史](update.md)
@@ -27,4 +24,3 @@
 
 ### Licence
 遵循 [Apache License](LICENSE)
-另外UI素材来源于 [uimaker](http://www.uimaker.com/)
