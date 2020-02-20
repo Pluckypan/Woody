@@ -1,0 +1,40 @@
+{
+	"manifest_version": 2,
+	"name": "Woody",
+	"version": "1.0",
+	"description": "Woody书签扩展",
+	"icons": {
+		"48": "logo.png"
+	},
+	"browser_action": {
+		"default_icon": "logo.png",
+		"default_popup": "popup.html"
+	},
+	"content_scripts": [{
+		"matches": [
+			"*://*/*"
+		],
+		"css": [
+
+		],
+		"js": [
+			"js/woody.core.js",
+			"js/woody.content.js"
+		],
+		"run_at": "document_end"
+	}],
+	"background": {
+		"scripts": [
+			"js/woody.core.js",
+			"js/background.js"
+		]
+	},
+	"permissions": [
+		"http://*/*",
+		"https://*/*",
+		"tabs",
+		"contextMenus", // 右键菜单
+		"notifications" // 通知
+	]
+
+}
